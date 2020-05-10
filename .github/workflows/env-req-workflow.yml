@@ -25,7 +25,11 @@ jobs:
           inlineScript: |
             az group create -n ${{ steps.parser.outputs.appName }}-rg -l ${{ secrets.DefaultAzureLocation }}
             az group deployment create -g ${{ steps.parser.outputs.appName }}-rg --template-file $GITHUB_WORKSPACE/templates/${{ steps.parser.outputs.armTemplate }}/azuredeploy.json --parameters name=${{ steps.parser.outputs.appName }} password=${{ secrets.DefaultPassword }}
-
+     
+      - name: Value Check #1
+        if: ${{ steps.parser.outputs.applyPolicy }}
+        run: echo Yes, it is true == ${{steps.parser.outputs.applyPolicy}} 
+        
       - uses: azure/CLI@v1
         if: ${{ steps.parser.outputs.applyPolicy }}
         with:
