@@ -5,6 +5,8 @@ on:
 
 jobs:
   build:
+    if: github.event.label.name == 'approved'
+    
     name: EnvironmentCreation
     runs-on: ubuntu-latest
     steps:
@@ -34,7 +36,7 @@ jobs:
       - uses: peter-evans/create-or-update-comment@v1.0.0
         if: steps.parser.outputs.approved
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
           issue-number: ${{ github.event.issue.number }}
           body: |
             ### 🚀All Set! 🚀
