@@ -1,0 +1,16 @@
+name: Environment Creation Workflow
+on: 
+  issues:
+    types: [labeled]
+
+jobs:
+  build:
+    name: EnvironmentCreation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: kstachowicz/mygithub-actions-collection/env-req-parser@master
+        id: parser
+
+     
