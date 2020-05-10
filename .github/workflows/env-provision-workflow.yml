@@ -1,4 +1,4 @@
-name: Environment Creation Workflow
+name: Environment Creation Workflow - short
 on: 
   issues:
     types: [labeled]
