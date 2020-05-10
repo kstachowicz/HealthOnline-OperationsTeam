@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: kstachowicz/GitHubActions-collection/.github/actions/env-req-parser@master
+      - uses: kstachowicz/mygithub-actions-collection/env-req-parser@master
         id: parser
 
       - uses: azure/login@v1
