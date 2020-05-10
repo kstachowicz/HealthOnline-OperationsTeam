@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    if: github.event.label.name == 'approved'
+    if: ${{ github.event.label.name == 'approved' }}
     
     name: EnvironmentCreation
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
             az group deployment create -g ${{ steps.parser.outputs.appName }}-rg --template-file $GITHUB_WORKSPACE/templates/${{ steps.parser.outputs.armTemplate }}/azuredeploy.json --parameters name=${{ steps.parser.outputs.appName }} password=${{ secrets.DefaultPassword }}
 
       - uses: azure/CLI@v1
-        if: steps.parser.outputs.applyPolicy
+        if: ${{ steps.parser.outputs.applyPolicy }}
         with:
           inlineScript: |
             az policy assignment create -n "${{ steps.parser.outputs.policyName }}" -g ${{ steps.parser.outputs.appName }}-rg -d $(az policy set-definition list --query "[?contains(displayName,'${{ steps.parser.outputs.policyName }}')].name" -o tsv) -l ${{ secrets.DefaultAzureLocation }} --assign-identity
