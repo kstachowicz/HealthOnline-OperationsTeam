@@ -5,6 +5,7 @@ on:
 
 jobs:
   build:
+    if: github.event.label.name == 'approved'
     name: EnvironmentCreation
     runs-on: ubuntu-latest
     steps:
