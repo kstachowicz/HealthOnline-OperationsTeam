@@ -1,6 +1,10 @@
 ---
 name: Environment Request
 about: Submit a request to create a new hosting environment for your app
+title: 'New env: username-appName'
+labels: ''
+assignees: ''
+
 ---
 
 ### Application Information
